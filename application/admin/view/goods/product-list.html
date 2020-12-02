@@ -1,0 +1,101 @@
+﻿
+<title>商品管理</title>
+<style type="text/css">
+    .pagination li{list-style:none;float:left;margin-left:10px;
+        padding:0 10px;
+        background-color:#5a98de;
+        border:1px solid #ccc;
+        height:26px;
+        line-height:26px;
+        cursor:pointer;color:#fff;
+    }
+    .pagination li a{color:white;padding: 0;line-height: inherit;border: none;}
+    .pagination li a:hover{background-color: #5a98de;}
+    .pagination li.active{background-color:white;color:gray;}
+    .pagination li.disabled{background-color:white;color:gray;}
+</style>
+<section class="Hui-article-box">
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 产品管理 <span class="c-gray en">&gt;</span> 商品管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+
+	<div class="Hui-article">
+		<article class="cl pd-20">
+			<div class="text-c">
+				<form class="Huiform" method="get" action="{:url('index')}" target="_self">
+					<input type="text" placeholder="商品名称" name="keyword" value="{$Request.param.keyword}" class="input-text" style="width:120px">
+					<button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜商品</button>
+				</form>
+			</div>
+			<div class="cl pd-5 bg-1 bk-gray mt-20">
+				<span class="l">
+					<a href="javascript:;" data-url="{:url('delete')}" id="patch_delete" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+					<a href="javascript:;" data-url="{:url('create')}" data-type="full" id="add" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加商品</a>
+				</span>
+				<span class="r">共有数据：<strong>{$list->total()}</strong> 条</span> </div>
+			<div class="mt-10">
+				<table class="table table-border table-bordered table-bg table-sort">
+					<thead>
+					<tr class="text-c">
+						<th width="3%"><input type="checkbox" name="" value=""></th>
+						<th width="5%">ID</th>
+						<th width="15%">商品名称</th>
+						<th width="8%">商品单价</th>
+						<th width="7%">库存</th>
+						<th width="8%">LOGO</th>
+						<th width="8%">分类</th>
+						<th width="7%">销量</th>
+						<th width="5%">上/下架</th>
+						<th width="5%">包邮</th>
+						<th width="5%">推荐</th>
+						<th width="5%">新品</th>
+						<th width="5%">热卖</th>
+						<th width="8%">排序</th>
+						<th width="">操作</th>
+					</tr>
+					</thead>
+					<tbody>
+					{foreach $list as $v}
+					<tr class="text-c">
+						<td><input name="" type="checkbox" value=""></td>
+						<td>{$v.id}</td>
+						<td>{$v.goods_name}</td>
+						<td class="text-l">{$v.goods_price}</td>
+						<td class="text-l">{$v.goods_number}</td>
+						<td><img src="{$v.goods_logo}"></td>
+						<td class="text-l">{$v.category.pid_path_name}</td>
+						<td class="text-l">{$v.sales_num}</td>
+						<td class="text-l">{$v.is_on_sale}</td>
+						<td class="text-l">{$v.is_free_shipping}</td>
+						<td class="text-l">{$v.is_recommend}</td>
+						<td class="text-l">{$v.is_new}</td>
+						<td class="text-l">{$v.is_hot}</td>
+						<td class="text-l">{$v.sort}</td>
+						<td class="f-14 product-brand-manage">
+							<a title="编辑" data-url="{:url('edit', ['id'=>$v.id])}" href="javascript:;" class="ml-5 edit" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+							<a title="删除" data-url="{:url('delete', ['id'=>$v.id])}" href="javascript:;" class="ml-5 delete" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+						</td>
+					</tr>
+					{/foreach}
+					</tbody>
+				</table>
+			</div>
+			<div>{$list->render()}</div>
+		</article>
+	</div>
+</section>
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="/static/admin/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="/static/admin/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/static/admin/lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript" src="/static/admin/logic/curd.js"></script>
+<script type="text/javascript">
+	// $('.table-sort').dataTable({
+	// 	"aaSorting": [[ 1, "desc" ]],//默认第几个排序
+	// 	"bStateSave": true,//状态保存
+	// 	"aoColumnDefs": [
+	// 		//{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+	// 		{"orderable":false,"aTargets":[0,6]}// 制定列不参与排序
+	// 	]
+	// });
+</script>
+<!--/请在上方写此页面业务相关的脚本-->

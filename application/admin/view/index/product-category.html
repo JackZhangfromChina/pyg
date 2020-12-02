@@ -1,0 +1,108 @@
+﻿
+<title>产品分类</title>
+<link rel="stylesheet" href="/static/admin/lib/zTree/v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
+
+<section class="Hui-article-box">
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 产品管理 <span class="c-gray en">&gt;</span> 产品分类 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+	<div class="Hui-article">
+		<article class="cl pd-20">
+			<table class="table">
+				<tr>
+					<td width="200" class="va-t"><ul id="treeDemo" class="ztree"></ul></td>
+					<td class="va-t">
+                        <div class="pd-20">
+                            <form action="" method="post" class="form form-horizontal" id="form-user-add">
+                                <div class="row cl">
+                                    <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分类名称：</label>
+                                    <div class="formControls col-5">
+                                        <input type="text" class="input-text" value="" placeholder="" id="user-name" name="product-category-name">
+                                    </div>
+                                    <div class="col-5"> </div>
+                                </div>
+                                <div class="row cl">
+                                    <label class="form-label col-xs-4 col-sm-2">备注：</label>
+                                    <div class="formControls col-5">
+                                        <textarea name="" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="textarealength(this,100)"></textarea>
+                                        <p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
+                                    </div>
+                                    <div class="col-5"> </div>
+                                </div>
+                                <div class="row cl">
+                                    <div class="col-9 col-offset-2">
+                                        <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </td>
+				</tr>
+			</table>
+		</article>
+	</div>
+</section>
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="/static/admin/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="/static/admin/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/static/admin/lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript" src="/static/admin/lib/zTree/v3/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript">
+var setting = {
+	view: {
+		dblClickExpand: false,
+		showLine: false,
+		selectedMulti: false
+	},
+	data: {
+		simpleData: {
+			enable:true,
+			idKey: "id",
+			pIdKey: "pId",
+			rootPId: ""
+		}
+	},
+	callback: {
+		beforeClick: function(treeId, treeNode) {
+			var zTree = $.fn.zTree.getZTreeObj("tree");
+			if (treeNode.isParent) {
+				zTree.expandNode(treeNode);
+				return false;
+			} else {
+				demoIframe.attr("src",treeNode.file + ".html");
+				return true;
+			}
+		}
+	}
+};
+
+var zNodes =[
+	{ id:1, pId:0, name:"一级分类", open:true},
+	{ id:11, pId:1, name:"二级分类"},
+	{ id:111, pId:11, name:"三级分类"},
+	{ id:112, pId:11, name:"三级分类"},
+	{ id:113, pId:11, name:"三级分类"},
+	{ id:114, pId:11, name:"三级分类"},
+	{ id:115, pId:11, name:"三级分类"},
+	{ id:12, pId:1, name:"二级分类 1-2"},
+	{ id:121, pId:12, name:"三级分类 1-2-1"},
+	{ id:122, pId:12, name:"三级分类 1-2-2"},
+];
+
+var code;
+
+function showCode(str) {
+	if (!code) code = $("#code");
+	code.empty();
+	code.append("<li>"+str+"</li>");
+}
+
+$(document).ready(function(){
+	var t = $("#treeDemo");
+	t = $.fn.zTree.init(t, setting, zNodes);
+	demoIframe = $("#testIframe");
+	demoIframe.bind("load", loadReady);
+	var zTree = $.fn.zTree.getZTreeObj("tree");
+	zTree.selectNode(zTree.getNodeByParam("id",'11'));
+});
+</script>
+<!--/请在上方写此页面业务相关的脚本-->

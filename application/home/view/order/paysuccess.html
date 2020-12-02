@@ -1,0 +1,19 @@
+
+	<title>支付页-成功</title>
+
+    <link rel="stylesheet" type="text/css" href="/static/home/css/pages-paysuccess.css" />
+
+	<div class="cart py-container">
+		<!--主内容-->
+		<div class="paysuccess">
+			<div class="success">
+				<h3><img src="/static/home/img/_/right.png" width="48" height="48">　恭喜您，支付成功啦！</h3>
+				<div class="paydetail">
+				<p>支付方式：{$pay_name}</p>
+				<p>支付金额：￥{$order_amount}元</p>
+				<p class="button"><a href="javascript:;" class="sui-btn btn-xlarge btn-danger">查看订单</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{:url('home/index/index')}" class="sui-btn btn-xlarge ">继续购物</a></p>
+			    </div>
+			</div>
+			
+		</div>
+	</div>

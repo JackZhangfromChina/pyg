@@ -1,0 +1,165 @@
+﻿
+<title>产品分类</title>
+<link rel="stylesheet" href="/static/admin/lib/zTree/v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
+
+<section class="Hui-article-box">
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 商品管理 <span class="c-gray en">&gt;</span> 商品分类 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+	<div class="Hui-article" style="overflow-y: scroll;">
+		<article class="cl pd-20">
+			<div class="cl pd-5 bg-1 bk-gray mt-20">
+				<span class="l">
+					<a href="javascript:;" id="tree_open" class="btn btn-danger radius tree_open"><i class="Hui-iconfont ">&#xfe3d;</i> <span>收缩分类</span></a>
+					<a href="javascript:;" data-url="{:url('create')}" id="add" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加分类</a>
+				</span>
+			</div>
+			<table class="table table-border table-bordered table-bg">
+				<thead>
+				<tr>
+					<th scope="col" colspan="7">分类</th>
+				</tr>
+				<tr class="text-c">
+					<th width="10%">[+/-]</th>
+					<th width="10%">ID</th>
+					<th width="20%">分类名称</th>
+					<th width="10%">分类图片</th>
+					<th width="10%">是否显示</th>
+					<th width="10%">是否热门</th>
+					<th>操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				{foreach $list as $v}
+				<tr class="text-c level_{$v.level}">
+					<td>
+						{if($v.level lt 2)}
+						{:str_repeat('&emsp;', $v.level*2)}
+						[<a href="javascript:;">-</a>]
+						{/if}
+					</td>
+					<td>{$v.id}</td>
+					<td class="text-l">{:str_repeat('&emsp;', $v.level*2)}{$v.cate_name}</td>
+					<td><img src="{$v.image_url}"></td>
+					<td>{$v.is_show}</td>
+					<td>{$v.is_hot}</td>
+					<td>
+						{if($v.level lt 2)}
+						<a title="添加下级" data-url="{:url('create', ['pid'=>$v.id])}?pid=" href="javascript:;" class="ml-5 add_child" style="text-decoration:none"><i class="Hui-iconfont">&#xe600;</i></a>
+						{/if}
+						<a title="编辑" data-url="{:url('edit', ['id'=>$v.id])}" href="javascript:;" class="ml-5 edit" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+						<a title="删除" data-url="{:url('delete', ['id'=>$v.id])}" href="javascript:;" class="ml-5 delete" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+					</td>
+				</tr>
+				{/foreach}
+				</tbody>
+			</table>
+		</article>
+	</div>
+</section>
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="/static/admin/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="/static/admin/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/static/admin/lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript" src="/static/admin/lib/zTree/v3/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="/static/admin/logic/curd.js"></script>
+<script type="text/javascript">
+/*var setting = {
+	view: {
+		dblClickExpand: false,
+		showLine: false,
+		selectedMulti: false
+	},
+	data: {
+		simpleData: {
+			enable:true,
+			idKey: "id",
+			pIdKey: "pId",
+			rootPId: ""
+		}
+	},
+	callback: {
+		beforeClick: function(treeId, treeNode) {
+			var zTree = $.fn.zTree.getZTreeObj("tree");
+			if (treeNode.isParent) {
+				zTree.expandNode(treeNode);
+				return false;
+			} else {
+				demoIframe.attr("src",treeNode.file + ".html");
+				return true;
+			}
+		}
+	}
+};
+
+var zNodes =[
+	{ id:1, pId:0, name:"一级分类", open:true},
+	{ id:11, pId:1, name:"二级分类"},
+	{ id:111, pId:11, name:"三级分类"},
+	{ id:112, pId:11, name:"三级分类"},
+	{ id:113, pId:11, name:"三级分类"},
+	{ id:114, pId:11, name:"三级分类"},
+	{ id:115, pId:11, name:"三级分类"},
+	{ id:12, pId:1, name:"二级分类 1-2"},
+	{ id:121, pId:12, name:"三级分类 1-2-1"},
+	{ id:122, pId:12, name:"三级分类 1-2-2"},
+];
+
+var code;
+
+function showCode(str) {
+	if (!code) code = $("#code");
+	code.empty();
+	code.append("<li>"+str+"</li>");
+}
+
+$(document).ready(function(){
+	var t = $("#treeDemo");
+	t = $.fn.zTree.init(t, setting, zNodes);
+	demoIframe = $("#testIframe");
+	demoIframe.bind("load", loadReady);
+	var zTree = $.fn.zTree.getZTreeObj("tree");
+	zTree.selectNode(zTree.getNodeByParam("id",'11'));
+});*/
+</script>
+<script>
+
+	$(function(){
+		$('tr.level_0').find('td:first-child a').click(function(){
+			var str = $(this).html() == '-';
+			if(str){
+				//收起
+				$(this).html('+').closest('tr').nextUntil('.level_0').hide();
+			}else{
+				//展开
+				$(this).html('-').closest('tr').nextUntil('.level_0').show();
+			}
+		});
+		$('tr.level_1').find('td:first-child a').click(function(){
+			var str = $(this).html() == '-';
+			if(str){
+				//收起
+				$(this).html('+').closest('tr').nextUntil('.level_1,.level_0').hide();
+			}else{
+				//展开
+				$(this).html('-').closest('tr').nextUntil('.level_1,.level_0').show();
+			}
+		});
+		$('#tree_open').click(function(){
+			var status = $(this).find('span').text() == '收缩分类';
+			if(status){
+				$(this).find('i').html('&#xfe3e;');
+				$(this).find('span').text('展开分类');
+				$('tr.level_0>td:first-child a').html('+');
+				$('tbody tr').not('.level_0').hide();
+			}else{
+				$(this).find('i').html('&#xfe3d;');
+				$(this).find('span').text('收缩分类');
+				$('.level_0>td:first-child a').html('-');
+				$('tbody tr').not('.level_0').show();
+			}
+		});
+	});
+</script>
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

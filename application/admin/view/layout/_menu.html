@@ -1,0 +1,32 @@
+<aside class="Hui-aside">
+	<div class="menu_dropdown bk_2">
+		{foreach $nav as $k => $nav_one}
+		{foreach $nav_one['son'] as $kk=>$nav_two}
+		<dl id="menu{$kk}" class="sec_nav" data-pid="{$nav_one.id}" style="{if($nav_one.id == $current_auth_ids[1])}display:block;{else/}display:none;{/if}">
+			<dt class="{if($nav_two.id == $current_auth_ids[2])}selected{/if}"><i class="Hui-iconfont">&#xe616;</i> {$nav_two.auth_name}<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd style="{if($nav_two.id == $current_auth_ids[2])}display:block;{/if}">
+				<ul>
+					{foreach $nav_two['son'] as $nav_three}
+					<li data-id="{$nav_three.id}" class="{if($nav_three.id == $current_auth_ids[3])}current{/if}">
+						<a href="{if($nav_three['auth_c']&&$nav_three['auth_a'])}{:url($nav_three['auth_c'] . '/' . $nav_three['auth_a'])}{else/}javascript:;{/if}" title="">{$nav_three.auth_name}</a>
+					</li>
+					{/foreach}
+				</ul>
+			</dd>
+		</dl>
+		{/foreach}
+		{/foreach}
+	</div>
+</aside>
+<div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>
+<script>
+	$(function(){
+		$('#top_nav').on('click', 'a', function(){
+			var data_id = $(this).attr('data-id');
+			$(this).parent().css('backgroundColor', 'gray');
+			$(this).parent().siblings().css('backgroundColor', '');
+			$('.sec_nav').filter('[data-pid=' + data_id + ']').show();
+			$('.sec_nav').not('[data-pid=' + data_id + ']').hide();
+		});
+	});
+</script>

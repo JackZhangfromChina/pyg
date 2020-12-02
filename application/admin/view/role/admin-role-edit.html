@@ -1,0 +1,168 @@
+﻿<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<link rel="Bookmark" href="favicon.ico" >
+	<link rel="Shortcut Icon" href="favicon.ico" />
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="/static/admin/lib/html5.js"></script>
+	<script type="text/javascript" src="/static/admin/lib/respond.min.js"></script>
+	<![endif]-->
+	<link rel="stylesheet" type="text/css" href="/static/admin/static/h-ui/css/H-ui.min.css" />
+	<link rel="stylesheet" type="text/css" href="/static/admin/static/h-ui.admin/css/H-ui.admin.css" />
+	<link rel="stylesheet" type="text/css" href="/static/admin/lib/Hui-iconfont/1.0.8/iconfont.css" />
+	<link rel="stylesheet" type="text/css" href="/static/admin/static/h-ui.admin/skin/default/skin.css" id="skin" />
+	<link rel="stylesheet" type="text/css" href="/static/admin/static/h-ui.admin/css/style.css" />
+	<!--[if IE 6]>
+	<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+	<script>DD_belatedPNG.fix('*');</script>
+	<![endif]-->
+	<!--/meta 作为公共模版分离出去-->
+
+	<title>新建网站角色 - 管理员管理 - H-ui.admin v3.0</title>
+</head>
+<body>
+<article class="cl pd-20">
+	<form action="{:url('update')}" method="post" class="form form-horizontal" id="form-edit">
+		<input type="hidden" value="{$info.id}" name="id">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>角色名称：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$info.role_name}" placeholder="" id="roleName" name="role_name" datatype="*4-16" nullmsg="角色名称不能为空">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">备注：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$info.desc}" placeholder="" id="" name="desc">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">网站权限：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				{foreach($auths as $one)}
+				<dl class="permission-list">
+					<dt>
+						<label>
+							<input type="checkbox" value="{$one.id}" name="auth_ids[]" id="user-Character-0" {in name="$one.id" value="$info.role_auth_ids"}checked{/in}>
+							{$one.auth_name}</label>
+					</dt>
+					<dd>
+						{foreach $one['son'] as $two}
+						<dl class="cl permission-list2">
+							<dt>
+								<label class="">
+									<input type="checkbox" value="{$two.id}" name="auth_ids[]" id="user-Character-0-0" {in name="$two.id" value="$info.role_auth_ids"}checked{/in}>
+									{$two.auth_name}</label>
+							</dt>
+							{foreach $two['son'] as $three}
+							<dd>
+								<label class="">
+									<input type="checkbox" value="{$three.id}" name="auth_ids[]" {in name="$three.id" value="$info.role_auth_ids"}checked{/in}>
+									{$three.auth_name}</label>
+
+								<label class="">
+									{foreach $three['son'] as $four}
+									<input type="checkbox" value="{$four.id}" name="auth_ids[]" {in name="$four.id" value="$info.role_auth_ids"}checked{/in}>
+									{$four.auth_name}
+									{/foreach}
+								</label>
+							</dd>
+							{/foreach}
+						</dl>
+						{/foreach}
+					</dd>
+				</dl>
+				{/foreach}
+			</div>
+		</div>
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<button type="submit" class="btn btn-success radius" id="admin-role-save" name="admin-role-save"><i class="icon-ok"></i> 确定</button>
+			</div>
+		</div>
+	</form>
+</article>
+
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="/static/admin/lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="/static/admin/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="/static/admin/static/h-ui/js/H-ui.js"></script>
+<script type="text/javascript" src="/static/admin/static/h-ui.admin/js/H-ui.admin.page.js"></script>
+
+<!--/_footer /作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="/static/admin/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="/static/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="/static/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$(".permission-list dt input:checkbox").click(function(){
+			$(this).closest("dl").find("dd input:checkbox").prop("checked",$(this).prop("checked"));
+			var $one = $(this).closest('dl').parents('dl');
+			var status = $one.find("dd :checked").length > 0;
+			$one.children('dt').find('input:checkbox').prop('checked', status);
+		});
+		$(".permission-list2 dd input:checkbox").click(function(){
+			if($(this).prop("checked")){
+				$(this).closest("dl").find("dt input:checkbox").prop("checked",true);
+				if($(this).parent().is(':first-child')){
+					$(this).parent().siblings().find('input:checkbox').prop("checked",true);
+				}else{
+					$(this).parent().parent().find('label:first-child').find('input:checkbox').prop("checked",true);
+				}
+				$(this).parents(".permission-list").find("dt").first().find("input:checkbox").prop("checked",true);
+			}else{
+				if($(this).parent().is(':first-child')){
+					//取消的是三级权限
+					$(this).parent().siblings().find('input:checkbox').prop("checked",false);
+				}
+				var l = $(this).closest("dl").find("dd input:checked").length;
+				if(l==0){
+					$(this).closest("dl").find("dt input:checkbox").prop("checked",false);
+				}
+				var l2=$(this).parents(".permission-list").children("dd").find("input:checked").length;
+
+				if(l2==0){
+					$(this).parents(".permission-list").find("dt").first().find("input:checkbox").prop("checked",false);
+				}
+			}
+		});
+		$("#form-edit").validate({
+			rules:{
+				auth_name:{
+					required:true,
+				},
+				auth_ids:{
+					required:true
+				}
+			},
+			onkeyup:false,
+			focusCleanup:true,
+			success:"valid",
+			submitHandler:function(form){
+				$(form).find(":submit").prop('disabled', true);
+				$(form).ajaxSubmit(function(res){
+					if(res.code == 200){
+						layer.msg('操作成功',{"icon":1,"time":"1000"},function(){
+							parent.location.reload();
+						});
+					}else{
+						$(form).find(":submit").prop('disabled', false);
+						layer.msg('操作失败:' + res.msg);
+					}
+				});
+
+			}
+		});
+	});
+</script>
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>
