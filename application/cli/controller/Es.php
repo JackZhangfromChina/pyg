@@ -19,10 +19,11 @@ class Es extends Controller
             $es = new \tools\es\MyElasticsearch();
             //创建索引
             if($es->exists_index('goods_index')) $es->delete_index('goods_index');
+
             $es->create_index('goods_index');
             $i = 0;
             while(true){
-                //查询商品数据 每次处理1000条  死循环，有停止条件
+                //查询商品数据 每次处理1000条
                 $goods = \app\common\model\Goods::with('category')->field('id,goods_name,goods_desc, goods_price,goods_logo,cate_id')->limit($i, 1000)->select();
                 if(empty($goods)){
                     //查询结果为空，则停止

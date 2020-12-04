@@ -7,9 +7,22 @@
     class Goods extends Base
     {
         //分类下的商品列表
+//        public function index($id)
+//        {
+//            //$id 是分类id
+//            //查询分类下的商品
+////            halt('ff');
+//            $list = \app\common\model\Goods::where('cate_id', $id)->order('id desc')->paginate(10);
+//            //查询分类信息
+//            $cate_info = \app\common\model\Category::find($id);
+//            //渲染模板
+//            return view('index', ['list' => $list, 'cate_info' => $cate_info ]);
+//        }
+
         public function index($id=0)
         {
             //接收参数
+            $id=72;
             $keywords = input('keywords');
             if(empty($keywords)){
                 //获取指定分类下商品列表
@@ -22,13 +35,17 @@
                 $category_info = \app\common\model\Category::find($id);
                 $cate_name = $category_info['cate_name'];
             }else{
-                try{
-                    //从ES中搜索
-                    $list = \app\home\logic\GoodsLogic::search();
-                    $cate_name = $keywords;
-                }catch (\Exception $e){
-                    $this->error('服务器异常');
-                }
+//                halt('dssxc');
+                //从ES中搜索
+                $list = \app\home\logic\GoodsLogic::search();
+                $cate_name = $keywords;
+//                try{
+//                    //从ES中搜索
+//                    $list = \app\home\logic\GoodsLogic::search();
+//                    $cate_name = $keywords;
+//                }catch (\Exception $e){
+//                    $this->error('服务器异常');
+//                }
 
             }
             return view('index', ['list' => $list, 'cate_name' => $cate_name]);

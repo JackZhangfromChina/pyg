@@ -35,7 +35,7 @@ class GoodsLogic extends Controller
                     ],
                 ],
             ],
-            'sort' => ['id'=>['order'=>'desc']],
+            'sort' => ['id'=>['order'=>'desc',"unmapped_type" =>"long"]],
             'from' => $from,
             'size' => $size
         ];
