@@ -1,20 +1,24 @@
 <?php
 namespace app\home\controller;
 
-class Index
+class Index extends Base
 {
     public function index()
     {
 
-        $es = \Elasticsearch\ClientBuilder::create()->setHosts(['127.0.0.1:9200'])->build();
-        $params = [
-            'index' => 'test_index',
-            'type' => 'test_type',
-            'id' => 100,
-        ];
+        $lives = \app\common\model\Live::order('id desc')->limit(6)->select();
+        //渲染模板
+        return view('index', ['lives'=>$lives]);
 
-        $r = $es->delete($params);
-        dump($r);die;
+//        $es = \Elasticsearch\ClientBuilder::create()->setHosts(['127.0.0.1:9200'])->build();
+//        $params = [
+//            'index' => 'test_index',
+//            'type' => 'test_type',
+//            'id' => 100,
+//        ];
+//
+//        $r = $es->delete($params);
+//        dump($r);die;
 
 //        $es = \Elasticsearch\ClientBuilder::create()->setHosts(['127.0.0.1:9200'])->build();
 //        $params = [

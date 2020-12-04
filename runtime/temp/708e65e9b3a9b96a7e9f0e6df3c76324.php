@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:81:"/Users/mmws/work/charge/pyg/pyg/public/../application/home/view/goods/detail.html";i:1563959902;s:65:"/Users/mmws/work/charge/pyg/pyg/application/home/view/layout.html";i:1563701718;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:81:"/Users/mmws/work/charge/pyg/pyg/public/../application/home/view/goods/detail.html";i:1563959902;s:65:"/Users/mmws/work/charge/pyg/pyg/application/home/view/layout.html";i:1606892190;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,11 +67,11 @@
                     </div>
                     <div class="yui3-u Center searchArea">
                         <div class="search">
-                            <form action="" class="sui-form form-inline">
+                            <form action="<?php echo url('home/goods/index'); ?>" method="get" class="sui-form form-inline">
                                 <!--searchAutoComplete-->
                                 <div class="input-append">
-                                    <input type="text" id="autocomplete" type="text" class="input-error input-xxlarge" />
-                                    <button class="sui-btn btn-xlarge btn-danger" type="button">搜索</button>
+                                    <input type="text" id="autocomplete" type="text" name="keywords" value="<?php echo \think\Request::instance()->param('keywords'); ?>" class="input-error input-xxlarge" />
+                                    <button class="sui-btn btn-xlarge btn-danger" type="submit">搜索</button>
                                 </div>
                             </form>
                         </div>
@@ -92,7 +92,7 @@
                         <div class="fr shopcar">
                             <div class="show-shopcar" id="shopcar">
                                 <span class="car"></span>
-                                <a class="sui-btn btn-default btn-xlarge" href="cart.html" target="_blank">
+                                <a class="sui-btn btn-default btn-xlarge" href="<?php echo url('home/cart/index'); ?>">
                                     <span>我的购物车</span>
                                     <i class="shopnum">0</i>
                                 </a>
@@ -111,366 +111,25 @@
                         </div>
                         <div class="sort">
                             <div class="all-sort-list2">
-                                <div class="item bo">
-                                    <h3><a href="">图书、音像、数字商品</a></h3>
-                                    <div class="item-list clearfix">
-                                        <div class="subitem">
-                                            <dl class="fore1">
-                                                <dt><a href="">电子书</a></dt>
-                                                <dd><a href="">免费</a><a href="">小说</a></em><a href="">励志与成功</a><em><a href="">婚恋/两性</a></em><em><a href="">文学</a></em><em><a href="">经管</a></em><em><a href="">畅读VIP</a></em></dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php foreach($category as $one): ?>
                                 <div class="item">
-                                    <h3><a href="">家用电器</a></h3>
+                                    <h3><a href="javascript:;"><?php echo $one['cate_name']; ?></a></h3>
                                     <div class="item-list clearfix">
                                         <div class="subitem">
-                                            <dl class="fore1">
-                                                <dt><a href="">电子书1</a></dt>
-                                                <dd><em><a href="">免费</a></em><em><a href="">小说</a></em><em><a href="">励志与成功</a></em><em><a href="">婚恋/两性</a></em><em><a href="">文学</a></em><em><a href="">经管</a></em><em><a href="">畅读VIP</a></em></dd>
-                                            </dl>
-                                            <dl class="fore2">
-                                                <dt><a href="">数字音乐</a></dt>
-                                                <dd><em><a href="">通俗流行</a></em><em><a href="">古典音乐</a></em><em><a href="">摇滚说唱</a></em><em><a href="">爵士蓝调</a></em><em><a href="">乡村民谣</a></em><em><a href="">有声读物</a></em></dd>
-                                            </dl>
-                                            <dl class="fore3">
-                                                <dt><a href="">音像</a></dt>
-                                                <dd><em><a href="">音乐</a></em><em><a href="">影视</a></em><em><a href="">教育音像</a></em><em><a href="">游戏</a></em></dd>
-                                            </dl>
-                                            <dl class="fore4">
-                                                <dt>文艺</dt>
-                                                <dd><em><a href="">小说</a></em><em><a href="">文学</a></em><em><a href="">青春文学</a></em><em><a href="">传记</a></em><em><a href="">艺术</a></em></dd>
-                                            </dl>
-                                            <dl class="fore5">
-                                                <dt>人文社科</dt>
-                                                <dd><em><a href="">历史</a></em><em><a href="">心理学</a></em><em><a href="">政治/军事</a></em><em><a href="">国学/古籍</a></em><em><a href="">哲学/宗教</a></em><em><a href="">社会科学</a></em></dd>
-                                            </dl>
-                                            <dl class="fore6">
-                                                <dt>经管励志</dt>
-                                                <dd><em><a href="">经济</a></em><em><a href="">金融与投资</a></em><em><a href="">管理</a></em><em><a href="">励志与成功</a></em></dd>
-                                            </dl>
-                                            <dl class="fore7">
-                                                <dt>生活</dt>
-                                                <dd><em><a href="">家庭与育儿</a></em><em><a href="">旅游/地图</a></em><em><a href="">烹饪/美食</a></em><em><a href="">时尚/美妆</a></em><em><a href="">家居</a></em><em><a href="">婚恋与两性</a></em><em><a href="">娱乐/休闲</a></em><em><a href="">健身与保健</a></em><em><a href="">动漫/幽默</a></em><em><a href="">体育/运动</a></em></dd>
-                                            </dl>
-                                            <dl class="fore8">
-                                                <dt>科技</dt>
-                                                <dd><em><a href="">科普</a></em><em><a href="">IT</a></em><em><a href="">建筑</a></em><em><a href="">医学</a></em><em><a href="">工业技术</a></em><em><a href="">电子/通信</a></em><em><a href="">农林</a></em><em><a href="">科学与自然</a></em></dd>
-                                            </dl>
-                                            <dl class="fore9">
-                                                <dt>少儿</dt>
-                                                <dd><em><a href="">少儿</a></em><em><a href="">0-2岁</a></em><em><a href="">3-6岁</a></em><em><a href="">7-10岁</a></em><em><a href="">11-14岁</a></em></dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <h3><a href="">手机、数码</a></h3>
-                                    <div class="item-list clearfix">
-                                        <div class="subitem">
-                                            <dl class="fore1">
-                                                <dt><a href="">电子书2</a></dt>
-                                                <dd><em><a href="">免费</a></em><em><a href="">小说</a></em><em><a href="">励志与成功</a></em><em><a href="">婚恋/两性</a></em><em><a href="">文学</a></em><em><a href="">经管</a></em><em><a href="">畅读VIP</a></em></dd>
-                                            </dl>
-                                            <dl class="fore2">
-                                                <dt><a href="">数字音乐</a></dt>
-                                                <dd><em><a href="">通俗流行</a></em><em><a href="">古典音乐</a></em><em><a href="">摇滚说唱</a></em><em><a href="">爵士蓝调</a></em><em><a href="">乡村民谣</a></em><em><a href="">有声读物</a></em></dd>
-                                            </dl>
-                                            <dl class="fore3">
-                                                <dt><a href="">音像</a></dt>
-                                                <dd><em><a href="">音乐</a></em><em><a href="">影视</a></em><em><a href="">教育音像</a></em><em><a href="">游戏</a></em></dd>
-                                            </dl>
-                                            <dl class="fore4">
-                                                <dt>文艺</dt>
-                                                <dd><em><a href="">小说</a></em><em><a href="">文学</a></em><em><a href="">青春文学</a></em><em><a href="">传记</a></em><em><a href="">艺术</a></em></dd>
-                                            </dl>
-                                            <dl class="fore5">
-                                                <dt>人文社科</dt>
-                                                <dd><em><a href="">历史</a></em><em><a href="">心理学</a></em><em><a href="">政治/军事</a></em><em><a href="">国学/古籍</a></em><em><a href="">哲学/宗教</a></em><em><a href="">社会科学</a></em></dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <h3><a href="">电脑、办公</a></h3>
-                                    <div class="item-list clearfix">
-                                        <div class="subitem">
-                                            <dl class="fore1">
-                                                <dt><a href="">电子书3</a></dt>
-                                                <dd><em><a href="">免费</a></em><em><a href="">小说</a></em><em><a href="">励志与成功</a></em><em><a href="">婚恋/两性</a></em><em><a href="">文学</a></em><em><a href="">经管</a></em><em><a href="">畅读VIP</a></em></dd>
-                                            </dl>
-                                            <dl class="fore2">
-                                                <dt><a href="">数字音乐</a></dt>
-                                                <dd><em><a href="">通俗流行</a></em><em><a href="">古典音乐</a></em><em><a href="">摇滚说唱</a></em><em><a href="">爵士蓝调</a></em><em><a href="">乡村民谣</a></em><em><a href="">有声读物</a></em></dd>
-                                            </dl>
-                                            <dl class="fore3">
-                                                <dt><a href="">音像</a></dt>
-                                                <dd><em><a href="">音乐</a></em><em><a href="">影视</a></em><em><a href="">教育音像</a></em><em><a href="">游戏</a></em></dd>
-                                            </dl>
-                                            <dl class="fore4">
-                                                <dt>文艺</dt>
-                                                <dd><em><a href="">小说</a></em><em><a href="">文学</a></em><em><a href="">青春文学</a></em><em><a href="">传记</a></em><em><a href="">艺术</a></em></dd>
-                                            </dl>
-                                            <dl class="fore5">
-                                                <dt>人文社科</dt>
-                                                <dd><em><a href="">历史</a></em><em><a href="">心理学</a></em><em><a href="">政治/军事</a></em><em><a href="">国学/古籍</a></em><em><a href="">哲学/宗教</a></em><em><a href="">社会科学</a></em></dd>
-                                            </dl>
-                                            <dl class="fore6">
-                                                <dt>经管励志</dt>
-                                                <dd><em><a href="">经济</a></em><em><a href="">金融与投资</a></em><em><a href="">管理</a></em><em><a href="">励志与成功</a></em></dd>
-                                            </dl>
-                                            <dl class="fore7">
-                                                <dt>生活</dt>
-                                                <dd><em><a href="">家庭与育儿</a></em><em><a href="">旅游/地图</a></em><em><a href="">烹饪/美食</a></em><em><a href="">时尚/美妆</a></em><em><a href="">家居</a></em><em><a href="">婚恋与两性</a></em><em><a href="">娱乐/休闲</a></em><em><a href="">健身与保健</a></em><em><a href="">动漫/幽默</a></em><em><a href="">体育/运动</a></em></dd>
-                                            </dl>
-                                            <dl class="fore8">
-                                                <dt>科技</dt>
-                                                <dd><em><a href="">科普</a></em><em><a href="">IT</a></em><em><a href="">建筑</a></em><em><a href="">医学</a></em><em><a href="">工业技术</a></em><em><a href="">电子/通信</a></em><em><a href="">农林</a></em><em><a href="">科学与自然</a></em></dd>
-                                            </dl>
-                                            <dl class="fore9">
-                                                <dt>少儿</dt>
-                                                <dd><em><a href="">少儿</a></em><em><a href="">0-2岁</a></em><em><a href="">3-6岁</a></em><em><a href="">7-10岁</a></em><em><a href="">11-14岁</a></em></dd>
-                                            </dl>
-                                            <dl class="fore10">
-                                                <dt>教育</dt>
-                                                <dd><em><a href="">教材教辅</a></em><em><a href="">考试</a></em><em><a href="">外语学习</a></em></dd>
-                                            </dl>
-                                            <dl class="fore11">
-                                                <dt>其它</dt>
-                                                <dd><em><a href="">英文原版书</a></em><em><a href="">港台图书</a></em><em><a href="">工具书</a></em><em><a href="">套装书</a></em><em><a href="">杂志/期刊</a></em></dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <h3><a href="">家居、家具、家装、厨具</a></h3>
-                                    <div class="item-list clearfix">
-                                        <div class="subitem">
-                                            <dl class="fore1">
-                                                <dt><a href="">电子书4</a></dt>
-                                                <dd><em><a href="">免费</a></em><em><a href="">小说</a></em><em><a href="">励志与成功</a></em><em><a href="">婚恋/两性</a></em><em><a href="">文学</a></em><em><a href="">经管</a></em><em><a href="">畅读VIP</a></em></dd>
-                                            </dl>
-                                            <dl class="fore2">
-                                                <dt><a href="">数字音乐</a></dt>
-                                                <dd><em><a href="">通俗流行</a></em><em><a href="">古典音乐</a></em><em><a href="">摇滚说唱</a></em><em><a href="">爵士蓝调</a></em><em><a href="">乡村民谣</a></em><em><a href="">有声读物</a></em></dd>
-                                            </dl>
-                                            <dl class="fore3">
-                                                <dt><a href="">音像</a></dt>
-                                                <dd><em><a href="">音乐</a></em><em><a href="">影视</a></em><em><a href="">教育音像</a></em><em><a href="">游戏</a></em></dd>
-                                            </dl>
-                                            <dl class="fore4">
-                                                <dt>文艺</dt>
-                                                <dd><em><a href="">小说</a></em><em><a href="">文学</a></em><em><a href="">青春文学</a></em><em><a href="">传记</a></em><em><a href="">艺术</a></em></dd>
-                                            </dl>
-                                            <dl class="fore5">
-                                                <dt>人文社科</dt>
-                                                <dd><em><a href="">历史</a></em><em><a href="">心理学</a></em><em><a href="">政治/军事</a></em><em><a href="">国学/古籍</a></em><em><a href="">哲学/宗教</a></em><em><a href="">社会科学</a></em></dd>
-                                            </dl>
-                                            <dl class="fore6">
-                                                <dt>经管励志</dt>
-                                                <dd><em><a href="">经济</a></em><em><a href="">金融与投资</a></em><em><a href="">管理</a></em><em><a href="">励志与成功</a></em></dd>
-                                            </dl>
-                                            <dl class="fore7">
-                                                <dt>生活</dt>
-                                                <dd><em><a href="">家庭与育儿</a></em><em><a href="">旅游/地图</a></em><em><a href="">烹饪/美食</a></em><em><a href="">时尚/美妆</a></em><em><a href="">家居</a></em><em><a href="">婚恋与两性</a></em><em><a href="">娱乐/休闲</a></em><em><a href="">健身与保健</a></em><em><a href="">动漫/幽默</a></em><em><a href="">体育/运动</a></em></dd>
-                                            </dl>
-                                            <dl class="fore8">
-                                                <dt>科技</dt>
-                                                <dd><em><a href="">科普</a></em><em><a href="">IT</a></em><em><a href="">建筑</a></em><em><a href="">医学</a></em><em><a href="">工业技术</a></em><em><a href="">电子/通信</a></em><em><a href="">农林</a></em><em><a href="">科学与自然</a></em></dd>
-                                            </dl>
-                                            <dl class="fore9">
-                                                <dt>少儿</dt>
-                                                <dd><em><a href="">少儿</a></em><em><a href="">0-2岁</a></em><em><a href="">3-6岁</a></em><em><a href="">7-10岁</a></em><em><a href="">11-14岁</a></em></dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <h3><a href="">服饰内衣</a></h3>
-                                    <div class="item-list clearfix">
-                                        <div class="subitem">
-                                            <dl class="fore1">
-                                                <dt><a href="">电子书5</a></dt>
-                                                <dd><em><a href="">免费</a></em><em><a href="">小说</a></em><em><a href="">励志与成功</a></em><em><a href="">婚恋/两性</a></em><em><a href="">文学</a></em><em><a href="">经管</a></em><em><a href="">畅读VIP</a></em></dd>
-                                            </dl>
-                                            <dl class="fore2">
-                                                <dt><a href="">数字音乐</a></dt>
-                                                <dd><em><a href="">通俗流行</a></em><em><a href="">古典音乐</a></em><em><a href="">摇滚说唱</a></em><em><a href="">爵士蓝调</a></em><em><a href="">乡村民谣</a></em><em><a href="">有声读物</a></em></dd>
-                                            </dl>
-                                            <dl class="fore3">
-                                                <dt><a href="">音像</a></dt>
-                                                <dd><em><a href="">音乐</a></em><em><a href="">影视</a></em><em><a href="">教育音像</a></em><em><a href="">游戏</a></em></dd>
-                                            </dl>
-                                            <dl class="fore4">
-                                                <dt>文艺</dt>
-                                                <dd><em><a href="">小说</a></em><em><a href="">文学</a></em><em><a href="">青春文学</a></em><em><a href="">传记</a></em><em><a href="">艺术</a></em></dd>
-                                            </dl>
-                                            <dl class="fore5">
-                                                <dt>人文社科</dt>
-                                                <dd><em><a href="">历史</a></em><em><a href="">心理学</a></em><em><a href="">政治/军事</a></em><em><a href="">国学/古籍</a></em><em><a href="">哲学/宗教</a></em><em><a href="">社会科学</a></em></dd>
-                                            </dl>
-                                            <dl class="fore6">
-                                                <dt>经管励志</dt>
-                                                <dd><em><a href="">经济</a></em><em><a href="">金融与投资</a></em><em><a href="">管理</a></em><em><a href="">励志与成功</a></em></dd>
-                                            </dl>
-                                            <dl class="fore7">
-                                                <dt>生活</dt>
-                                                <dd><em><a href="">家庭与育儿</a></em><em><a href="">旅游/地图</a></em><em><a href="">烹饪/美食</a></em><em><a href="">时尚/美妆</a></em><em><a href="">家居</a></em><em><a href="">婚恋与两性</a></em><em><a href="">娱乐/休闲</a></em><em><a href="">健身与保健</a></em><em><a href="">动漫/幽默</a></em><em><a href="">体育/运动</a></em></dd>
-                                            </dl>
-                                            <dl class="fore8">
-                                                <dt>科技</dt>
-                                                <dd><em><a href="">科普</a></em><em><a href="">IT</a></em><em><a href="">建筑</a></em><em><a href="">医学</a></em><em><a href="">工业技术</a></em><em><a href="">电子/通信</a></em><em><a href="">农林</a></em><em><a href="">科学与自然</a></em></dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <h3><a href="">个护化妆</a></h3>
-                                    <div class="item-list clearfix">
-                                        <div class="subitem">
-                                            <dl class="fore1">
-                                                <dt><a href="">电子书6</a></dt>
-                                                <dd><em><a href="">免费</a></em><em><a href="">小说</a></em><em><a href="">励志与成功</a></em><em><a href="">婚恋/两性</a></em><em><a href="">文学</a></em><em><a href="">经管</a></em><em><a href="">畅读VIP</a></em></dd>
-                                            </dl>
-                                            <dl class="fore2">
-                                                <dt><a href="">数字音乐</a></dt>
-                                                <dd><em><a href="">通俗流行</a></em><em><a href="">古典音乐</a></em><em><a href="">摇滚说唱</a></em><em><a href="">爵士蓝调</a></em><em><a href="">乡村民谣</a></em><em><a href="">有声读物</a></em></dd>
-                                            </dl>
-                                            <dl class="fore3">
-                                                <dt><a href="">音像</a></dt>
-                                                <dd><em><a href="">音乐</a></em><em><a href="">影视</a></em><em><a href="">教育音像</a></em><em><a href="">游戏</a></em></dd>
-                                            </dl>
-                                            <dl class="fore4">
-                                                <dt>文艺</dt>
-                                                <dd><em><a href="">小说</a></em><em><a href="">文学</a></em><em><a href="">青春文学</a></em><em><a href="">传记</a></em><em><a href="">艺术</a></em></dd>
-                                            </dl>
-                                            <dl class="fore5">
-                                                <dt>人文社科</dt>
-                                                <dd><em><a href="">历史</a></em><em><a href="">心理学</a></em><em><a href="">政治/军事</a></em><em><a href="">国学/古籍</a></em><em><a href="">哲学/宗教</a></em><em><a href="">社会科学</a></em></dd>
-                                            </dl>
-                                            <dl class="fore6">
-                                                <dt>经管励志</dt>
-                                                <dd><em><a href="">经济</a></em><em><a href="">金融与投资</a></em><em><a href="">管理</a></em><em><a href="">励志与成功</a></em></dd>
-                                            </dl>
-                                            <dl class="fore7">
-                                                <dt>生活</dt>
-                                                <dd><em><a href="">家庭与育儿</a></em><em><a href="">旅游/地图</a></em><em><a href="">烹饪/美食</a></em><em><a href="">时尚/美妆</a></em><em><a href="">家居</a></em><em><a href="">婚恋与两性</a></em><em><a href="">娱乐/休闲</a></em><em><a href="">健身与保健</a></em><em><a href="">动漫/幽默</a></em><em><a href="">体育/运动</a></em></dd>
-                                            </dl>
-                                            <dl class="fore8">
-                                                <dt>科技</dt>
-                                                <dd><em><a href="">科普</a></em><em><a href="">IT</a></em><em><a href="">建筑</a></em><em><a href="">医学</a></em><em><a href="">工业技术</a></em><em><a href="">电子/通信</a></em><em><a href="">农林</a></em><em><a href="">科学与自然</a></em></dd>
-                                            </dl>
-                                            <dl class="fore9">
-                                                <dt>少儿</dt>
-                                                <dd><em><a href="">少儿</a></em><em><a href="">0-2岁</a></em><em><a href="">3-6岁</a></em><em><a href="">7-10岁</a></em><em><a href="">11-14岁</a></em></dd>
-                                            </dl>
-                                            <dl class="fore10">
-                                                <dt>教育</dt>
-                                                <dd><em><a href="">教材教辅</a></em><em><a href="">考试</a></em><em><a href="">外语学习</a></em></dd>
-                                            </dl>
-                                            <dl class="fore11">
-                                                <dt>其它</dt>
-                                                <dd><em><a href="">英文原版书</a></em><em><a href="">港台图书</a></em><em><a href="">工具书</a></em><em><a href="">套装书</a></em><em><a href="">杂志/期刊</a></em></dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <h3><a href="">运动健康</a></h3>
-                                    <div class="item-list clearfix">
-                                        <div class="subitem">
-                                            <dl class="fore1">
-                                                <dt><a href="">电子书7</a></dt>
-                                                <dd><em><a href="">免费</a></em><em><a href="">小说</a></em><em><a href="">励志与成功</a></em><em><a href="">婚恋/两性</a></em><em><a href="">文学</a></em><em><a href="">经管</a></em><em><a href="">畅读VIP</a></em></dd>
-                                            </dl>
-                                            <dl class="fore2">
-                                                <dt><a href="">数字音乐</a></dt>
-                                                <dd><em><a href="">通俗流行</a></em><em><a href="">古典音乐</a></em><em><a href="">摇滚说唱</a></em><em><a href="">爵士蓝调</a></em><em><a href="">乡村民谣</a></em><em><a href="">有声读物</a></em></dd>
-                                            </dl>
-                                            <dl class="fore3">
-                                                <dt><a href="">音像</a></dt>
-                                                <dd><em><a href="">音乐</a></em><em><a href="">影视</a></em><em><a href="">教育音像</a></em><em><a href="">游戏</a></em></dd>
-                                            </dl>
-                                            <dl class="fore4">
-                                                <dt>文艺</dt>
-                                                <dd><em><a href="">小说</a></em><em><a href="">文学</a></em><em><a href="">青春文学</a></em><em><a href="">传记</a></em><em><a href="">艺术</a></em></dd>
-                                            </dl>
-                                        </div>
-                                        <div class="cat-right">
-                                            <dl class="categorys-brands" clstag="homepage|keycount|home2013|0601d">
-                                                <dt>推荐品牌出版商</dt>
+                                            <?php foreach($one['son'] as $k=>$two): ?>
+                                            <dl class="fore<?php echo $k; ?>">
+                                                <dt><a href="javascript:;"><?php echo $two['cate_name']; ?></a></dt>
                                                 <dd>
-                                                    <ul>
-                                                        <li>
-                                                            <a href="">中华书局</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="">人民邮电出版社</a>
-                                                        </li>
-                                                    </ul>
+                                                    <?php foreach($two['son'] as $three): ?>
+                                                    <em><a href="<?php echo url('home/goods/index', ['id'=>$three['id']]); ?>"><?php echo $three['cate_name']; ?></a></em>
+                                                    <?php endforeach; ?>
                                                 </dd>
                                             </dl>
+                                            <?php endforeach; ?>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="item">
-                                    <h3><a href="">汽车用品</a></h3>
-                                    <div class="item-list clearfix">
-                                        <div class="subitem">
-                                            <dl class="fore1">
-                                                <dt><a href="">电子书8</a></dt>
-                                                <dd><em><a href="">免费</a></em><em><a href="">小说</a></em><em><a href="">励志与成功</a></em><em><a href="">婚恋/两性</a></em><em><a href="">文学</a></em><em><a href="">经管</a></em><em><a href="">畅读VIP</a></em></dd>
-                                            </dl>
-                                            <dl class="fore2">
-                                                <dt><a href="">数字音乐</a></dt>
-                                                <dd><em><a href="">通俗流行</a></em><em><a href="">古典音乐</a></em><em><a href="">摇滚说唱</a></em><em><a href="">爵士蓝调</a></em><em><a href="">乡村民谣</a></em><em><a href="">有声读物</a></em></dd>
-                                            </dl>
-                                            <dl class="fore3">
-                                                <dt><a href="">音像</a></dt>
-                                                <dd><em><a href="">音乐</a></em><em><a href="">影视</a></em><em><a href="">教育音像</a></em><em><a href="">游戏</a></em></dd>
-                                            </dl>
-                                            <dl class="fore4">
-                                                <dt>文艺</dt>
-                                                <dd><em><a href="">小说</a></em><em><a href="">文学</a></em><em><a href="">青春文学</a></em><em><a href="">传记</a></em><em><a href="">艺术</a></em></dd>
-                                            </dl>
-                                            <dl class="fore5">
-                                                <dt>人文社科</dt>
-                                                <dd><em><a href="">历史</a></em><em><a href="">心理学</a></em><em><a href="">政治/军事</a></em><em><a href="">国学/古籍</a></em><em><a href="">哲学/宗教</a></em><em><a href="">社会科学</a></em></dd>
-                                            </dl>
-                                            <dl class="fore6">
-                                                <dt>经管励志</dt>
-                                                <dd><em><a href="">经济</a></em><em><a href="">金融与投资</a></em><em><a href="">管理</a></em><em><a href="">励志与成功</a></em></dd>
-                                            </dl>
-                                            <dl class="fore7">
-                                                <dt>生活</dt>
-                                                <dd><em><a href="">家庭与育儿</a></em><em><a href="">旅游/地图</a></em><em><a href="">烹饪/美食</a></em><em><a href="">时尚/美妆</a></em><em><a href="">家居</a></em><em><a href="">婚恋与两性</a></em><em><a href="">娱乐/休闲</a></em><em><a href="">健身与保健</a></em><em><a href="">动漫/幽默</a></em><em><a href="">体育/运动</a></em></dd>
-                                            </dl>
-                                            <dl class="fore8">
-                                                <dt>科技</dt>
-                                                <dd><em><a href="">科普</a></em><em><a href="">IT</a></em><em><a href="">建筑</a></em><em><a href="">医学</a></em><em><a href="">工业技术</a></em><em><a href="">电子/通信</a></em><em><a href="">农林</a></em><em><a href="">科学与自然</a></em></dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <h3><a href="">彩票、旅行</a></h3>
-                                </div>
-                                <div class="item">
-                                    <h3><a href="">理财、众筹</a></h3>
-                                </div>
-                                <div class="item">
-                                    <h3><a href="">母婴、玩具</a></h3>
-                                </div>
-                                <div class="item">
-                                    <h3><a href="">箱包</a></h3>
-                                </div>
-                                <div class="item">
-                                    <h3><a href="">运动户外</a></h3>
-                                </div>
-                                <div class="item">
-                                    <h3><a href="">箱包</a></h3>
-                                </div>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </div>
@@ -1378,7 +1037,6 @@
                     </div>
                     <div class="tbar-panel-footer J-panel-footer"></div>
                 </div>
-
                 <!-- 我的足迹 -->
                 <div style="visibility: hidden;" class="J-content toolbar-panel tbar-panel-history toolbar-animate-in">
                     <h3 class="tbar-panel-header J-panel-header">
@@ -1406,11 +1064,8 @@
                     </div>
                     <div class="tbar-panel-footer J-panel-footer"></div>
                 </div>
-
             </div>
-
             <div class="toolbar-header"></div>
-
             <!-- 侧栏按钮 -->
             <div class="toolbar-tabs J-tab">
                 <div onclick="cartPanelView.tabItemClick('cart')" class="toolbar-tab tbar-tab-cart" data="购物车" tag="cart" >
@@ -1429,18 +1084,13 @@
                     <span class="tab-sub J-count hide">0</span>
                 </div>
             </div>
-
             <div class="toolbar-footer">
                 <div class="toolbar-tab tbar-tab-top" > <a href="#"> <i class="tab-ico  "></i> <em class="footer-tab-text">顶部</em> </a> </div>
                 <div class="toolbar-tab tbar-tab-feedback" > <a href="#" target="_blank"> <i class="tab-ico"></i> <em class="footer-tab-text ">反馈</em> </a> </div>
             </div>
-
             <div class="toolbar-mini"></div>
-
         </div>
-
         <div id="J-toolbar-load-hook"></div>
-
     </div>
 </div>
 <!--购物车单元格 模板-->
@@ -1461,7 +1111,5 @@
     </div>
 </script>
 <!--侧栏面板结束-->
-
 </body>
-
 </html>

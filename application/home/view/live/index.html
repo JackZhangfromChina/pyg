@@ -1,0 +1,51 @@
+
+<title>我的直播</title>
+<link rel="stylesheet" type="text/css" href="/static/home/css/pages-seckillOrder.css" />
+
+<div id="account">
+    <div class="py-container">
+        <div class="yui3-g collect">
+            <!--左侧列表-->
+            {include file="member_left"/}
+
+            <!--右侧主内容-->
+            <div class="yui3-u-5-6 goods">
+
+                <div class="body">
+                    <div class="">
+                        <span class="title">全部直播 </span>
+                        <a href="{:url('create')}" class="sui-btn  btn-info add-new">添加新直播</a>
+                        <span class="clearfix"></span>
+                    </div>
+                    <div class="goods-list">
+                        <ul class="yui3-g" id="goods-list">
+                            {foreach($list as $v)}
+                            <li class="yui3-u-1-4">
+                                <div class="list-wrap">
+                                    <div class="p-img">
+                                        <a href="{:url('read', ['id'=>$v.id])}"><img src="{$v.image}" alt=''></a>
+                                    </div>
+                                    <div class="price">
+                                        <strong><em>{$v.start_time}</em></strong>
+                                    </div>
+                                    <div class="attr">
+                                        <em>{$v.title}</em>
+                                    </div>
+                                    <div class="cu">
+                                        <em><span>惠</span>领优惠券</em>
+                                    </div>
+                                    <div class="operate">
+                                        <a href="javascript:void(0);" class="sui-btn btn-bordered btn-danger">开始直播</a>
+                                        <a href="javascript:void(0);" class="sui-btn btn-bordered">回放</a>
+                                        <a href="javascript:void(0);" class="sui-btn btn-bordered">删除</a>
+                                    </div>
+                                </div>
+                            </li>
+                            {/foreach}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

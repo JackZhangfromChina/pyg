@@ -1,0 +1,62 @@
+
+<title>直播详情</title>
+<link rel="stylesheet" type="text/css" href="/static/home/css/pages-seckillOrder.css" />
+
+<div id="account">
+    <div class="py-container">
+        <div class="yui3-g home">
+            <!--左侧列表-->
+            {include file="member_left"/}
+
+            <!--右侧主内容-->
+            <div class="yui3-u-5-6">
+                <div class="body">
+                    <div class="order-detail">
+                        <h4>直播详情:{$info.title}</h4>
+                        <div class="order-bar">
+                            <img src="{$info.image}">
+                        </div>
+                        <div class="order-state">
+                            <p>当前状态：<span class="red">未开始</span> <a href="javascript:void(0);" class="sui-btn btn-bordered btn-danger">开始直播</a></p>
+                            <p>开始时间：<span class="red">{$info.start_time}</span></p>
+                        </div>
+                    </div>
+                    <div class="order-info">
+                        <h5>直播信息</h5>
+                        <p>推流地址：{$info.push_url}</p>
+                        <p>推流密钥：{$info.push_key}</p>
+                        <p>播流地址：{$info.live_url}</p>
+                    </div>
+                    <div class="order-goods">
+                        <table class="sui-table">
+                            <thead>
+                            <th class="center" >商品</th>
+                            <th class="center" >价格</th>
+                            <th class="center" >优惠</th>
+                            </thead>
+
+                            <tbody>
+                            {foreach $info['goods'] as $v}
+                            <tr>
+                                <td>
+                                    <div class="typographic"><img src="{$v.goods_logo}" />
+                                        <span>{$v.goods_name}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul class="unstyled">
+                                        <li>¥{$v.goods_price}</li>
+                                    </ul>
+                                </td>
+                                <td>无优惠</td>
+                            </tr>
+                            {/foreach}
+                            </tbody>
+                        </table>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
